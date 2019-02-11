@@ -2,7 +2,6 @@ package com.rakshitjain.domain.usecases
 
 import com.rakshitjain.domain.common.BaseFlowableUseCase
 import com.rakshitjain.domain.common.FlowableRxTransformer
-import com.rakshitjain.domain.entities.DataEntity
 import com.rakshitjain.domain.entities.NewsSourcesEntity
 import com.rakshitjain.domain.repositories.NewsDataStore
 import com.rakshitjain.domain.repositories.NewsRepository
