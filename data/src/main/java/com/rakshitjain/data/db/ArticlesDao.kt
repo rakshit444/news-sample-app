@@ -1,0 +1,22 @@
+package com.rakshitjain.data.db
+
+import android.arch.persistence.room.Dao
+import android.arch.persistence.room.Insert
+import android.arch.persistence.room.OnConflictStrategy
+import android.arch.persistence.room.Query
+import com.rakshitjain.data.entities.NewsPublisherData
+import io.reactivex.Flowable
+
+@Dao
+interface ArticlesDao{
+
+    @Query("Select * from news_articles")
+    fun getAllArticles(): Flowable<List<NewsPublisherData>?>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun saveAllArticles(articles: List<NewsPublisherData>)
+
+    @Query("DELETE FROM news_articles")
+    fun clear()
+
+}

@@ -1,0 +1,25 @@
+ext {
+
+    // Android
+    minSdkVersion = 19
+    targetSdkVersion = 27
+    compileSdkVersion = 27
+    testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+
+    androidSupportLibVersion = "27.1.1"
+    room = "android.arch.persistence.room:runtime:1.1.0"
+    rxRoom = "android.arch.persistence.room:rxjava2:1.1.0"
+    rxJava = "io.reactivex.rxjava2:rxjava:2.1.6"
+    dagger = "com.google.dagger:dagger:2.16"
+    daggerCompiler = "com.google.dagger:dagger-compiler:2.16"
+    retrofit = "com.squareup.retrofit2:retrofit:2.3.0"
+    retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:2.3.0"
+    retrofitRxJava2Adapter = "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+    retrofitLoggingInterceptors = "com.squareup.okhttp3:logging-interceptor:3.8.0"
+    koin = "org.koin:koin-android-viewmodel:1.0.1"
+
+    // Testing
+    junit = "junit:junit:4.12"
+    mockito = "org.mockito:mockito-core:2.8.47"
+    androidTestRunner = "com.android.support.test:runner:1.0.1"
+}
