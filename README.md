@@ -17,12 +17,10 @@
 3. Dynamic feature 
 
 ### Developed By
-------------
 
 * Rakshit Jain  - <rjain.jain444@gmail.com> 
 
 ### License
--------
 
     Copyright 2019 Rakshit Jain
 
