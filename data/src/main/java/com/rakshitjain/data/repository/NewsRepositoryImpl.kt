@@ -8,9 +8,16 @@ import io.reactivex.schedulers.Schedulers
 class NewsRepositoryImpl(private val remote: NewsRemoteImpl,
                          private val cache: NewsCacheImpl) : NewsRepository {
 
+    /**
+     * It will first get articles from the local database and also update it with the latest
+     * articles
+     */
+
     override fun getNews(): Flowable<NewsSourcesEntity> {
-        remote.getNews().observeOn(Schedulers.io()).subscribeOn(Schedulers.io())
-                .subscribe ( {remoteNews -> cache.saveArticles(remoteNews)},{} )
+        val updateNewsFlowable = remote.getNews()
         return cache.getNews()
+                .mergeWith(updateNewsFlowable.doOnNext{
+                    remoteNews -> cache.saveArticles(remoteNews)
+                })
     }
 }
