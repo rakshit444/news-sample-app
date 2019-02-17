@@ -19,9 +19,9 @@ class BasicAuthInterceptor() : Interceptor {
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
-        val authenticatedRequest = request.newBuilder()
-                .header("Authorization", "HiF41qQG5Ysve1TULfqy4T7jFOIo7pW1Z52buyme-B8BTUlkuSglHKi4ITFVCrL2okM8e0uIB29xQwy250mhqA").build()
-        return chain.proceed(authenticatedRequest)
+        val newUrl = request.url().newBuilder().addQueryParameter("apiKey", BuildConfig.API_KEY).build()
+        val newRequest = request.newBuilder().url(newUrl).build()
+        return chain.proceed(newRequest)
     }
 
 }
@@ -33,7 +33,7 @@ private fun httpClient(): OkHttpClient {
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         clientBuilder.addInterceptor(httpLoggingInterceptor)
     }
-   // clientBuilder.addInterceptor(BasicAuthInterceptor())
+    clientBuilder.addInterceptor(BasicAuthInterceptor())
     clientBuilder.readTimeout(120, TimeUnit.SECONDS)
     clientBuilder.writeTimeout(120, TimeUnit.SECONDS)
     return clientBuilder.build()
