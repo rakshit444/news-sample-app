@@ -22,6 +22,9 @@
 1. Generate api key from https://newsapi.org/
 2. Put the api key in presentation layer gradle file as a value to API_KEY
 
+### Posting
+https://medium.com/@rjain.jain444/kotlin-clean-architecture-1ad42fcd97fa
+
 ### Developed By
 
 * Rakshit Jain  - <rjain.jain444@gmail.com> 
