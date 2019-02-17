@@ -21,7 +21,6 @@
 ### Steps to run:
 1. Generate api key from https://newsapi.org/
 2. Put the api key in presentation layer gradle file as a value to API_KEY
-That's it...
 
 ### Developed By
 
