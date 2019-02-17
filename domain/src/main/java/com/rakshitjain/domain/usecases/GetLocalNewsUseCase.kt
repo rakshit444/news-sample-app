@@ -6,12 +6,13 @@ import com.rakshitjain.domain.entities.NewsSourcesEntity
 import com.rakshitjain.domain.repositories.NewsRepository
 import io.reactivex.Flowable
 
-/**
- * It will first get articles from the local database and also update it with the latest
- * articles from remote
- */
-class GetNewsUseCase(private val transformer: FlowableRxTransformer<NewsSourcesEntity>,
-                     private val repositories: NewsRepository): BaseFlowableUseCase<NewsSourcesEntity>(transformer){
+// It will just return the list of articles in local database
+class GetLocalNewsUseCase(private val transformer: FlowableRxTransformer<NewsSourcesEntity>,
+                          private val repositories: NewsRepository): BaseFlowableUseCase<NewsSourcesEntity>(transformer){
+
+    companion object {
+        private const val PARAM_FILE_NEWS_ENTITY = "param:NewsStatus"
+    }
 
     override fun createFlowable(data: Map<String, Any>?): Flowable<NewsSourcesEntity> {
         return repositories.getNews()
@@ -21,4 +22,6 @@ class GetNewsUseCase(private val transformer: FlowableRxTransformer<NewsSourcesE
         val data = HashMap<String, String>()
         return single(data)
     }
+
+
 }

@@ -5,7 +5,6 @@ import com.rakshitjain.data.db.NewsDatabase
 import com.rakshitjain.data.entities.NewsDataEntityMapper
 import com.rakshitjain.data.entities.NewsEntityDataMapper
 import com.rakshitjain.domain.entities.NewsSourcesEntity
-import com.rakshitjain.domain.repositories.NewsDataStore
 import io.reactivex.Flowable
 
 class NewsCacheImpl(private val database: NewsDatabase,

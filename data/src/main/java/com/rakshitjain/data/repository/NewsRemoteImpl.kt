@@ -1,6 +1,5 @@
 package com.rakshitjain.data.repository
 
-import com.rakshitjain.domain.repositories.NewsDataStore
 import com.rakshitjain.data.api.RemoteNewsApi
 import com.rakshitjain.domain.entities.NewsSourcesEntity
 import com.rakshitjain.data.entities.NewsDataEntityMapper
