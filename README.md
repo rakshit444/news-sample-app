@@ -1,6 +1,6 @@
 # Android News Clean Architecture
 
-[![CircleCI](https://circleci.com/gh/rakshit444/news-sample-app/tree/master.svg?style=svg)](https://circleci.com/gh/rakshit444/news-sample-app/tree/master)  [![Kotlin](https://kotlin.link/awesome-kotlin.svg)](https://circleci.com/gh/rakshit444/news-sample-app/tree/master)  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![CircleCI](https://circleci.com/gh/rakshit444/news-sample-app/tree/master.svg?style=svg)](https://circleci.com/gh/rakshit444/news-sample-app/tree/master)  [![Kotlin](https://kotlin.link/awesome-kotlin.svg)](https://kotlinlang.org/)  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ### Things achieved so far
 
@@ -12,9 +12,11 @@
 
 ### RoadMap for future
 
-1. Implementation Pagination
+1. Pagination
 2. Coroutines
 3. Dynamic feature 
+4. Unit test
+5. UI Improvement
 
 ### Developed By
 
