@@ -1,6 +1,6 @@
 package com.rakshitjain.presentation.news
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import android.util.Log
 import com.rakshitjain.domain.common.Mapper
 import com.rakshitjain.domain.entities.NewsSourcesEntity

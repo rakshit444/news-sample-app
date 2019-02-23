@@ -1,6 +1,6 @@
 package com.rakshitjain.presentation.di
 
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import com.rakshitjain.data.api.RemoteNewsApi
 import com.rakshitjain.data.db.NewsDatabase
 import com.rakshitjain.data.entities.NewsDataEntityMapper
