@@ -1,7 +1,7 @@
 package com.rakshitjain.data.db
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.Database
+import androidx.room.RoomDatabase
 import com.rakshitjain.data.entities.NewsPublisherData
 
 @Database(entities = arrayOf(NewsPublisherData::class), version = 1)
