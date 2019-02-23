@@ -3,16 +3,13 @@ package com.rakshitjain.data.entities
 import com.google.gson.annotations.SerializedName
 import com.rakshitjain.domain.entities.NewsPublisherEntity
 import com.rakshitjain.domain.entities.NewsSourcesEntity
-import javax.inject.Inject
-import javax.inject.Singleton
 
 data class NewsSourcesData(
         @SerializedName("status") var status: String? = null,
         @SerializedName("articles") var articles: List<NewsPublisherData> = emptyList()
 )
 
-@Singleton
-class NewsDataEntityMapper @Inject constructor() {
+class NewsDataEntityMapper constructor() {
 
     fun mapToEntity(data: NewsSourcesData?): NewsSourcesEntity? = NewsSourcesEntity(
             status = data?.status,
@@ -38,8 +35,7 @@ class NewsDataEntityMapper @Inject constructor() {
 }
 
 
-@Singleton
-class NewsEntityDataMapper @Inject constructor() {
+class NewsEntityDataMapper constructor() {
 
     fun mapToEntity(data: NewsSourcesEntity?): NewsSourcesData? = NewsSourcesData(
             status = data?.status,
