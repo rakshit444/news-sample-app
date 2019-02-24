@@ -17,7 +17,6 @@ import com.rakshitjain.presentation.mappers.NewsEntityMapper
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidApplication
 import retrofit2.Retrofit
-import kotlin.coroutines.CoroutineContext
 
 val mRepositoryModules = module {
     single(name = "remote") { NewsRemoteImpl(api = get(API))}
@@ -29,7 +28,7 @@ val mRepositoryModules = module {
 }
 
 val mUseCaseModules = module {
-    factory(name = GET_NEWS_USECASE) { GetNewsUseCase(transformer = Dispatchers.Default, repositories = get()) }
+    factory(name = GET_NEWS_USECASE) { GetNewsUseCase(coroutineContext = Dispatchers.Default, repositories = get()) }
 }
 
 val mNetworkModules = module {

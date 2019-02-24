@@ -24,9 +24,11 @@ class NewsViewModel(private val getNewsUseCase: GetNewsUseCase,
         coroutineScope.launch {
             val news = getNewsUseCase.getNews()
             news.consumeEach { response ->
+                val mappedResponse = mapper.mapFrom(response)
+
+                //Switching the context to main
                 withContext(Dispatchers.Main) {
-                    val mappedResponse = mapper.mapFrom(response)
-                    mNews.value = mappedResponse
+                    mNews.postValue(mappedResponse)
                 }
             }
         }
