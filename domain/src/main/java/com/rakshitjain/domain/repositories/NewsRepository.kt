@@ -1,12 +1,12 @@
 package com.rakshitjain.domain.repositories
 
 import com.rakshitjain.domain.entities.NewsSourcesEntity
-import io.reactivex.Flowable
+import kotlinx.coroutines.channels.ReceiveChannel
 
 interface NewsRepository {
 
-    fun getNews(): Flowable<NewsSourcesEntity>
-    fun getLocalNews(): Flowable<NewsSourcesEntity>
-    fun getRemoteNews(): Flowable<NewsSourcesEntity>
+    suspend fun getNews(): ReceiveChannel<NewsSourcesEntity>
+    suspend fun getLocalNews(): ReceiveChannel<NewsSourcesEntity>
+    suspend fun getRemoteNews(): ReceiveChannel<NewsSourcesEntity>
 
 }

@@ -1,5 +1,6 @@
 package com.rakshitjain.presentation.di
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -43,4 +44,5 @@ private fun retrofitClient(baseUrl: String, httpClient: OkHttpClient): Retrofit 
                 .baseUrl(baseUrl)
                 .client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .build()

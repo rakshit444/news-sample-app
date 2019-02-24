@@ -6,10 +6,15 @@ ext {
     compileSdkVersion = 28
     testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
 
+    def room_version = "2.1.0-alpha04"
+
     androidSupportLibVersion = '1.0.0-beta01'
-    room = 'androidx.room:room-runtime:2.0.0-beta01'
-    rxRoom = 'androidx.room:room-rxjava2:2.0.0-beta01'
-    rxJava = "io.reactivex.rxjava2:rxjava:2.1.6"
+    rxRoom = "androidx.room:room-rxjava2:$room_version"
+    room = "androidx.room:room-runtime:$room_version"
+    coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
+    coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1"
+    coroutinesReactive = "org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.1.1"
+    retrofitCoroutinesConverter = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
     retrofit = "com.squareup.retrofit2:retrofit:2.3.0"
     retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:2.3.0"
     retrofitLoggingInterceptors = "com.squareup.okhttp3:logging-interceptor:3.8.0"

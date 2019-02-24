@@ -1,10 +1,9 @@
 package com.rakshitjain.data.repository
 
 import com.rakshitjain.domain.entities.NewsSourcesEntity
-import io.reactivex.Flowable
-import io.reactivex.Single
+import kotlinx.coroutines.channels.ReceiveChannel
 
 
 interface NewsDataStore{
-    fun getNews(): Flowable<NewsSourcesEntity>
+    suspend fun getNews(): ReceiveChannel<NewsSourcesEntity>
 }

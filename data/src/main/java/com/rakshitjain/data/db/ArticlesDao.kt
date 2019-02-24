@@ -11,12 +11,12 @@ import io.reactivex.Flowable
 interface ArticlesDao{
 
     @Query("Select * from news_articles")
-    fun getAllArticles(): Flowable<List<NewsPublisherData>?>
+     fun getAllArticles(): Flowable<List<NewsPublisherData>?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveAllArticles(articles: List<NewsPublisherData>)
+     fun saveAllArticles(articles: List<NewsPublisherData>)
 
     @Query("DELETE FROM news_articles")
-    fun clear()
+     fun clear()
 
 }

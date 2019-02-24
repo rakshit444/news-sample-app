@@ -36,10 +36,12 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation rootProject.ext.rxJava
+    implementation rootProject.ext.coroutines
+    implementation rootProject.ext.retrofitCoroutinesConverter
     implementation rootProject.ext.retrofit
     implementation rootProject.ext.retrofitGsonConverter
     implementation rootProject.ext.room
+    implementation rootProject.ext.coroutinesReactive
     implementation rootProject.ext.rxRoom
     kapt 'androidx.room:room-compiler:2.0.0-beta01'
 

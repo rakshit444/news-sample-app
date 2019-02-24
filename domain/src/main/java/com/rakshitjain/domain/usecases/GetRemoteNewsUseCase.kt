@@ -1,26 +1,26 @@
 package com.rakshitjain.domain.usecases
 
-import com.rakshitjain.domain.common.BaseFlowableUseCase
-import com.rakshitjain.domain.common.FlowableRxTransformer
+import com.rakshitjain.domain.common.BaseJobUseCase
 import com.rakshitjain.domain.entities.NewsSourcesEntity
 import com.rakshitjain.domain.repositories.NewsRepository
-import io.reactivex.Flowable
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlin.coroutines.CoroutineContext
 
 //It will get you the only the latest by fetching it from remote
-class GetRemoteNewsUseCase(private val transformer: FlowableRxTransformer<NewsSourcesEntity>,
-                           private val repositories: NewsRepository): BaseFlowableUseCase<NewsSourcesEntity>(transformer){
+class GetRemoteNewsUseCase(private val transformer: CoroutineContext,
+                           private val repositories: NewsRepository): BaseJobUseCase<NewsSourcesEntity>(transformer){
 
     companion object {
         private const val PARAM_FILE_NEWS_ENTITY = "param:NewsStatus"
     }
 
-    override fun createFlowable(data: Map<String, Any>?): Flowable<NewsSourcesEntity> {
+    override suspend fun createJob(data: Map<String, Any>?): ReceiveChannel<NewsSourcesEntity> {
         return repositories.getNews()
     }
 
-    fun getNews(): Flowable<NewsSourcesEntity>{
+    suspend fun getNews(): ReceiveChannel<NewsSourcesEntity>{
         val data = HashMap<String, String>()
-        return single(data)
+        return createJob(data)
     }
 
 

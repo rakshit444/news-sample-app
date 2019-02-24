@@ -10,13 +10,14 @@ import com.rakshitjain.domain.usecases.GetNewsUseCase
 import com.rakshitjain.data.repository.NewsRemoteImpl
 import com.rakshitjain.data.repository.NewsRepositoryImpl
 import com.rakshitjain.domain.repositories.NewsRepository
-import com.rakshitjain.presentation.common.AsyncFlowableTransformer
 import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 import com.rakshitjain.presentation.news.NewsViewModel
 import com.rakshitjain.presentation.mappers.NewsEntityMapper
+import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidApplication
 import retrofit2.Retrofit
+import kotlin.coroutines.CoroutineContext
 
 val mRepositoryModules = module {
     single(name = "remote") { NewsRemoteImpl(api = get(API))}
@@ -28,7 +29,7 @@ val mRepositoryModules = module {
 }
 
 val mUseCaseModules = module {
-    factory(name = "getNewsUseCase") { GetNewsUseCase(transformer = AsyncFlowableTransformer(), repositories = get()) }
+    factory(name = "getNewsUseCase") { GetNewsUseCase(transformer = Dispatchers.Default, repositories = get()) }
 }
 
 val mNetworkModules = module {
