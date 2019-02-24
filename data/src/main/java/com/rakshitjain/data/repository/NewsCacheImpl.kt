@@ -5,6 +5,7 @@ import com.rakshitjain.data.db.NewsDatabase
 import com.rakshitjain.data.entities.NewsDataEntityMapper
 import com.rakshitjain.data.entities.NewsEntityDataMapper
 import com.rakshitjain.domain.entities.NewsSourcesEntity
+import com.rakshitjain.presentation.entities.DataEntity
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.reactive.openSubscription
 
@@ -14,16 +15,18 @@ class NewsCacheImpl(private val database: NewsDatabase,
 
     private val dao: ArticlesDao = database.getArticlesDao()
 
-    override suspend fun getNews(): ReceiveChannel<NewsSourcesEntity> {
+    override suspend fun getNews(): ReceiveChannel<DataEntity<NewsSourcesEntity>> {
         val mappedValue = dao.getAllArticles().map { it ->
-            dataToEntityMapper.mapToEntity(it)!!
+            DataEntity.SUCCESS(dataToEntityMapper.mapToEntity(it))
         }
         return mappedValue.openSubscription()
     }
 
-    fun saveArticles(it: NewsSourcesEntity) {
-        dao.clear()
-        dao.saveAllArticles(it.articles.map { articles -> entityToDataMapper.mapArticleToEntity(articles) })
+    fun saveArticles(response: DataEntity<NewsSourcesEntity>) {
+        entityToDataMapper.mapResponseToData(response)?.let {
+            dao.clear()
+            dao.saveAllArticles(it)
+        }
     }
 
 }

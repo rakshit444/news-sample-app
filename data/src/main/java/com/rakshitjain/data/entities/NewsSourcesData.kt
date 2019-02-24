@@ -3,6 +3,7 @@ package com.rakshitjain.data.entities
 import com.google.gson.annotations.SerializedName
 import com.rakshitjain.domain.entities.NewsPublisherEntity
 import com.rakshitjain.domain.entities.NewsSourcesEntity
+import com.rakshitjain.presentation.entities.DataEntity
 
 data class NewsSourcesData(
         @SerializedName("status") var status: String? = null,
@@ -11,14 +12,9 @@ data class NewsSourcesData(
 
 class NewsDataEntityMapper constructor() {
 
-    fun mapToEntity(data: NewsSourcesData?): NewsSourcesEntity? = NewsSourcesEntity(
-            status = data?.status,
-            articles = mapListArticlesToEntity(data?.articles)
-    )
+    fun mapToEntity(mapArticles: List<NewsPublisherData>?) =
+            NewsSourcesEntity(articles = mapListArticlesToEntity(mapArticles))
 
-    fun mapToEntity(articles: List<NewsPublisherData>?): NewsSourcesEntity? = NewsSourcesEntity(
-            articles = mapListArticlesToEntity(articles)
-    )
 
     fun mapListArticlesToEntity(articles: List<NewsPublisherData>?)
             : List<NewsPublisherEntity> = articles?.map { mapArticleToEntity(it) } ?: emptyList()
@@ -37,21 +33,24 @@ class NewsDataEntityMapper constructor() {
 
 class NewsEntityDataMapper constructor() {
 
-    fun mapToEntity(data: NewsSourcesEntity?): NewsSourcesData? = NewsSourcesData(
-            status = data?.status,
-            articles = mapListArticlesToEntity(data?.articles)
-    )
-
-    fun mapListArticlesToEntity(articles: List<NewsPublisherEntity>?)
-            : List<NewsPublisherData> = articles?.map { mapArticleToEntity(it) } ?: emptyList()
-
-    fun mapArticleToEntity(response: NewsPublisherEntity): NewsPublisherData = NewsPublisherData(
+    fun mapArticleToData(response: NewsPublisherEntity): NewsPublisherData = NewsPublisherData(
             id = response.id,
             name = response.name,
             description = response.description,
             url = response.url,
             category = response.category
     )
+
+    fun mapResponseToData(response: DataEntity<NewsSourcesEntity>): List<NewsPublisherData>? {
+        when (response) {
+            is DataEntity.SUCCESS<NewsSourcesEntity> ->
+                return@mapResponseToData response.data?.articles?.map { mapArticleToData(it) }
+            is DataEntity.ERROR<NewsSourcesEntity> ->
+                return@mapResponseToData response.data?.articles?.map { mapArticleToData(it) }
+            is DataEntity.LOADING<NewsSourcesEntity> ->
+                return@mapResponseToData response.data?.articles?.map { mapArticleToData(it) }
+        }
+    }
 
 
 }

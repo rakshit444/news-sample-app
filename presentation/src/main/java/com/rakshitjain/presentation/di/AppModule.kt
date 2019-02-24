@@ -29,7 +29,7 @@ val mRepositoryModules = module {
 }
 
 val mUseCaseModules = module {
-    factory(name = "getNewsUseCase") { GetNewsUseCase(transformer = Dispatchers.Default, repositories = get()) }
+    factory(name = GET_NEWS_USECASE) { GetNewsUseCase(transformer = Dispatchers.Default, repositories = get()) }
 }
 
 val mNetworkModules = module {

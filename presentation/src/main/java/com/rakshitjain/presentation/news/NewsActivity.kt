@@ -5,10 +5,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.rakshitjain.presentation.entities.Data
 import kotlinx.android.synthetic.main.news_articles.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import rakshitjain.news_sample_app.R
-import com.rakshitjain.presentation.entities.Status
 
 class NewsActivity : AppCompatActivity() {
 
@@ -28,19 +28,16 @@ class NewsActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         newsList.getNewsLiveData().observe(this, Observer {
-            when (it?.responseType) {
-                Status.ERROR -> {
+            when (it) {
+                is Data.ERROR -> {
                     //Error handling
                 }
-                Status.LOADING -> {
+                is Data.LOADING -> {
                     //Progress
                 }
-                Status.SUCCESSFUL -> {
-                    // On Successful response
+                is Data.SUCCESS -> {
+                    it.data?.articles?.let { it1 -> listAdapter.updateList(it1) }
                 }
-            }
-            it?.data?.let { response ->
-                listAdapter.updateList(response.articles)
             }
         })
     }

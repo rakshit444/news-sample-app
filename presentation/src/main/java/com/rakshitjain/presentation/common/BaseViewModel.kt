@@ -1,22 +1,17 @@
 package com.rakshitjain.presentation.common
 
 import androidx.lifecycle.ViewModel
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 
 open class BaseViewModel : ViewModel() {
 
-    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
-
-    protected fun addDisposable(disposable: Disposable) {
-        compositeDisposable.add(disposable)
-    }
-
-    private fun clearDisposables() {
-        compositeDisposable.clear()
-    }
+    private val pendingJobs = Job()
+    val coroutineScope = CoroutineScope(Dispatchers.Default + pendingJobs)
 
     override fun onCleared() {
-        clearDisposables()
+        coroutineScope.cancel()
     }
 }
