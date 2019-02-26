@@ -6,6 +6,7 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import rakshitjain.news_sample_app.BuildConfig
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 import java.util.concurrent.TimeUnit
@@ -43,4 +44,5 @@ private fun retrofitClient(baseUrl: String, httpClient: OkHttpClient): Retrofit 
                 .baseUrl(baseUrl)
                 .client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()

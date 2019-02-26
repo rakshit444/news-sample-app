@@ -12,6 +12,7 @@ ext {
     rxJava = "io.reactivex.rxjava2:rxjava:2.1.6"
     retrofit = "com.squareup.retrofit2:retrofit:2.3.0"
     retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:2.3.0"
+    retrofitRxJava2Adapter = "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
     retrofitLoggingInterceptors = "com.squareup.okhttp3:logging-interceptor:3.8.0"
     koin = "org.koin:koin-android-viewmodel:1.0.1"
 
