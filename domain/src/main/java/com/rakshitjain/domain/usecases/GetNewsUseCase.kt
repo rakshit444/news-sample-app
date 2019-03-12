@@ -12,14 +12,18 @@ import kotlin.coroutines.CoroutineContext
  * articles from remote
  */
 class GetNewsUseCase(private val coroutineContext: CoroutineContext,
-                     private val repositories: NewsRepository): BaseJobUseCase<NewsSourcesEntity>(coroutineContext){
+                     private val repositories: NewsRepository) : BaseJobUseCase<NewsSourcesEntity>(coroutineContext) {
 
-    override suspend fun createJob(data: Map<String, Any>?): ReceiveChannel<DataEntity<NewsSourcesEntity>> {
+    override suspend fun getDataChannel(data: Map<String, Any>?): ReceiveChannel<DataEntity<NewsSourcesEntity>> {
         return repositories.getNews()
     }
 
-    suspend fun getNews(): ReceiveChannel<DataEntity<NewsSourcesEntity>>{
+    override suspend fun sendToPresentation(data: DataEntity<NewsSourcesEntity>): DataEntity<NewsSourcesEntity> {
+        return data
+    }
+
+    suspend fun getNews(): ReceiveChannel<DataEntity<NewsSourcesEntity>> {
         val data = HashMap<String, String>()
-        return createJob(data)
+        return getDataChannel(data)
     }
 }

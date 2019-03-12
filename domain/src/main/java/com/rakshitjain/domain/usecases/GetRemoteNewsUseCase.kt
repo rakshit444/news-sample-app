@@ -15,13 +15,17 @@ class GetRemoteNewsUseCase(private val transformer: CoroutineContext,
         private const val PARAM_FILE_NEWS_ENTITY = "param:NewsStatus"
     }
 
-    override suspend fun createJob(data: Map<String, Any>?): ReceiveChannel<DataEntity<NewsSourcesEntity>> {
+    override suspend fun getDataChannel(data: Map<String, Any>?): ReceiveChannel<DataEntity<NewsSourcesEntity>> {
         return repositories.getNews()
+    }
+
+    override suspend fun sendToPresentation(data: DataEntity<NewsSourcesEntity>): DataEntity<NewsSourcesEntity> {
+        return data
     }
 
     suspend fun getNews(): ReceiveChannel<DataEntity<NewsSourcesEntity>>{
         val data = HashMap<String, String>()
-        return createJob(data)
+        return getDataChannel(data)
     }
 
 
