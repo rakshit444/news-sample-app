@@ -6,9 +6,8 @@ import com.rakshitjain.data.entities.NewsDataEntityMapper
 import com.rakshitjain.presentation.entities.DataEntity
 import com.rakshitjain.presentation.entities.ErrorEntity
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.produce
 import java.lang.Exception
 
 class NewsRemoteImpl constructor(private val api: RemoteNewsApi) : NewsDataStore {
@@ -16,17 +15,16 @@ class NewsRemoteImpl constructor(private val api: RemoteNewsApi) : NewsDataStore
     private val newsMapper = NewsDataEntityMapper()
 
     override suspend fun getNews(): ReceiveChannel<DataEntity<NewsSourcesEntity>> {
-        val channel = Channel<DataEntity<NewsSourcesEntity>>()
-        GlobalScope.async {
+        val producer = GlobalScope.produce<DataEntity<NewsSourcesEntity>> {
             try {
                 val news = api.getNews().await()
-                newsMapper.mapToEntity(news.articles).let { channel.send(DataEntity.SUCCESS(it)) }
+                newsMapper.mapToEntity(news.articles).let { send(DataEntity.SUCCESS(it)) }
             } catch (e: Exception) {
-                channel.send(DataEntity.ERROR(ErrorEntity(e.message)))
+                send(DataEntity.ERROR(ErrorEntity(e.message)))
             }
-        }.start()
+        }
 
-        return channel
+        return producer
     }
 
 }
