@@ -24,6 +24,6 @@ class GetNewsUseCase(private val coroutineContext: CoroutineContext,
 
     suspend fun getNews(): ReceiveChannel<DataEntity<NewsSourcesEntity>> {
         val data = HashMap<String, String>()
-        return getDataChannel(data)
+        return produce(data)
     }
 }

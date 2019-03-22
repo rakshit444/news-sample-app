@@ -14,14 +14,11 @@ import kotlinx.coroutines.channels.consumeEach
 class NewsViewModel(private val getNewsUseCase: GetNewsUseCase,
                     private val mapper: Mapper<DataEntity<NewsSourcesEntity>, Data<NewsSources>>) : BaseViewModel() {
 
-    companion object {
-        private val TAG = "viewmodel"
-    }
 
     var mNews = MutableLiveData<Data<NewsSources>>()
 
     fun fetchNews() {
-        coroutineScope.launch {
+        launch {
             val news = getNewsUseCase.getNews()
             news.consumeEach { response ->
                 val mappedResponse = mapper.mapFrom(response)

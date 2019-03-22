@@ -4,14 +4,17 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancel
+import kotlin.coroutines.CoroutineContext
 
-open class BaseViewModel : ViewModel() {
+open class BaseViewModel : ViewModel(),CoroutineScope {
 
     private val pendingJobs = Job()
-    val coroutineScope = CoroutineScope(Dispatchers.Default + pendingJobs)
+
+    override val coroutineContext: CoroutineContext
+        get() = (Dispatchers.Default + pendingJobs)
+
 
     override fun onCleared() {
-        coroutineScope.cancel()
+        pendingJobs.cancel()
     }
 }
