@@ -26,8 +26,8 @@
 1. Clean architecture with coroutines: https://github.com/rakshit444/news-sample-app/tree/wip/coroutines
 
 ### Posting
-https://medium.com/@rjain.jain444/kotlin-clean-architecture-1ad42fcd97fa
-https://proandroiddev.com/experimenting-with-coroutines-2082d5ec4ae8
+Clean architecture: https://medium.com/@rjain.jain444/kotlin-clean-architecture-1ad42fcd97fa <br/>
+Coroutines: https://proandroiddev.com/experimenting-with-coroutines-2082d5ec4ae8
 
 ### Developed By
 
