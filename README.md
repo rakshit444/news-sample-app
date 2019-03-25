@@ -25,9 +25,6 @@
 ### Features 
 1. Clean architecture with coroutines: https://github.com/rakshit444/news-sample-app/tree/wip/coroutines
 
-### Posting
-https://medium.com/@rjain.jain444/kotlin-clean-architecture-1ad42fcd97fa
-
 ### Developed By
 
 * Rakshit Jain  - <rjain.jain444@gmail.com> 
