@@ -13,7 +13,7 @@
 ### RoadMap for future
 
 1. Pagination
-2. Coroutines
+2. <strike> Coroutines </strike>
 3. Dynamic feature 
 4. Unit test
 5. UI Improvement
