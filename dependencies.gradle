@@ -18,6 +18,9 @@ ext {
 
     // Testing
     junit = "junit:junit:4.12"
+    core = "androidx.test:core:1.0.0-beta01"
     mockito = "org.mockito:mockito-core:2.8.47"
     androidTestRunner = 'androidx.test:runner:1.1.0-alpha4'
+
+    annotations = "androidx.annotation:annotation:1.1.0"
 }

@@ -5,7 +5,7 @@ import com.rakshitjain.domain.entities.NewsSourcesEntity
 import com.rakshitjain.data.entities.NewsDataEntityMapper
 import io.reactivex.Flowable
 
-class NewsRemoteImpl constructor(private val api:RemoteNewsApi): NewsDataStore {
+open class NewsRemoteImpl constructor(private val api:RemoteNewsApi): NewsDataStore {
 
     private val newsMapper =  NewsDataEntityMapper()
 

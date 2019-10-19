@@ -7,7 +7,7 @@ import com.rakshitjain.data.entities.NewsEntityDataMapper
 import com.rakshitjain.domain.entities.NewsSourcesEntity
 import io.reactivex.Flowable
 
-class NewsCacheImpl(private val database: NewsDatabase,
+open class NewsCacheImpl(private val database: NewsDatabase,
                     private val entityToDataMapper: NewsEntityDataMapper,
                     private val dataToEntityMapper: NewsDataEntityMapper) : NewsDataStore {
 
